@@ -6,7 +6,7 @@ namespace NoteBook.Data
 {
 	public class ApplicationDbContext: DbContext
 	{
-        public DbSet<Login>? Users { get; set; }
+        public DbSet<Login> Users { get; set; }
 
         // public DbSet<User> Users { get; set; } 
 
@@ -22,5 +22,3 @@ namespace NoteBook.Data
     }
 
 }
-
-// dotnet ef migrations add MyMigration --project NoteBook.csproj

@@ -71,13 +71,7 @@ namespace NoteBook.Controllers
             return View(model);
         }
 
-        //public async Task<IActionResult> ListNotes()
-        //{
-        //    var notes = await _context.Users
-        //                              .Where(n => n.id == User.Identity.)
-        //                              .ToListAsync();
-        //    return View(notes);
-        //}
+     
     }
 }
 
