@@ -1,6 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "List Notes";
 }
 
+@model IEnumerable<NoteBook.Models.Note>
+
+<h2>Your Notes</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var note in Model)
+                {
+                    <tr>
+                        <td>
+                            <form id="login-form" asp-action="Delete" asp-controller="Notes" asp-route-id="@note.Id" method="post" class="mx-1">
+                                <a asp-action="Edit" asp-controller="Notes" asp-route-id="@note.Id" class="btn btn-info mx-1"><i class="fas fa-edit"></i></a>
+                                <button class="btn btn-danger mx-1" type="submit" onclick="return confirm('Bu notu silmek istediğinize emin misiniz?');"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                        <td>@note.Title</td>
+                        <td>@note.Content</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="container"><h5>You do not have any notes.</h5></div>
+    }
+
+<div class="buton-index">
+    <a asp-action="Create" asp-controller="Notes" class="btn btn-primary">Add New Note</a>
+</div>

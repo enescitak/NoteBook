@@ -2,42 +2,30 @@
     ViewData["Title"] = "Register Page";
 }
 
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model NoteBook.Models.User
 
-@model NoteBook.ViewModels.UserViewModel
+<form id="login-form" asp-action="Register" asp-controller="Account" method="post">
 
-<html> 
+    <h2>Register</h2>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NoteBook</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <h1 class="text-center">Register</h1>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form asp-action="Register" asp-controller="Account" method="post" class="mt-4">
-                    <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input asp-for="username" type="text" class="form-control mt-2" />
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="password">Password:</label>
-                        <input asp-for="password" type="password" class="form-control mt-2" />
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="password">Email:</label>
-                        <input asp-for="email" type="email" class="form-control mt-2" />
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block mt-3">Register</button>
-                </form>
-            </div>
-        </div>
+    <div class="form-group">
+        <input asp-for="Username" type="text" placeholder="Username" />
+        <span class="text-danger" asp-validation-for="Username"></span><br />
     </div>
-</body>
-</html>
+
+    <div class="form-group">
+        <input asp-for="Password" type="password" placeholder="Password" />
+        <span class="text-danger" asp-validation-for="Password"></span><br />
+    </div>
+
+    <div class="form-group">
+        <input asp-for="Email" type="email" placeholder="Email" />
+        <span class="text-danger" asp-validation-for="Email"></span><br />
+    </div>
+
+    <div class="butn">
+        <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+        <a asp-action="Login" class="btn btn-secondary mt-4">Cancel</a>
+    </div>
+
+</form>

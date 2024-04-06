@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using NoteBook.Data;
+using NoteBook.Models;
 using NoteBook.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,7 +12,6 @@ namespace NoteBook.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
-
 
         public AccountController(ApplicationDbContext context, IConfiguration configuration)
         {
@@ -31,7 +26,7 @@ namespace NoteBook.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(Register user)
+        public async Task<IActionResult> Register(User user)
         {
             if (ModelState.IsValid)
             {
@@ -54,24 +49,22 @@ namespace NoteBook.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _context.Users
-                                         .FirstOrDefaultAsync(u => u.username == model.username
-                                                                && u.password == model.password);
+                                         .FirstOrDefaultAsync(u => u.Username == model.Username
+                                                                && u.Password == model.Password);
                 if (user != null)
                 {
-                    // Kullanıcı doğrulaması başarılı, ListNotes view'ına yönlendir
-                    return RedirectToAction("ListNotes");
+                    HttpContext.Session.SetString("Username", user.Username);
+                    HttpContext.Session.SetInt32("UserId", user.UserId);
+
+                    return RedirectToAction("List","Notes");
                 }
                 else
                 {
-                    // Kullanıcı adı veya şifre hatalı, hata mesajı ekle ve view'ı geri döndür
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError("Username", "Invalid username, please try again.");
                     return View(model);
                 }
             }
-            return View(model);
+            return View();
         }
-
-     
     }
 }
-

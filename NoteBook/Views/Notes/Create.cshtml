@@ -1,19 +1,26 @@
-﻿@*@model IEnumerable<Note>*@
-
-<h2>Your Notes</h2>
-
-@if (Model.Any())
-{
-    <ul>
-        @foreach (var note in Model)
-        {
-            <li>@note.Content</li>
-        }
-    </ul>
-}
-else
-{
-    <p>You have no notes.</p>
+﻿@{
+    ViewData["Title"] = "Add Note";
 }
 
-<a asp-action="Create" asp-controller="Notes" class="btn btn-primary">Add New Note</a>
+@model NoteBook.Models.Note
+
+<form id="login-form" asp-action="Create" asp-controller="Notes" method="post">
+
+    <h2>Add Note</h2>
+
+    <div class="form-group">
+        <input asp-for="Title" placeholder="Title" />
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <textarea asp-for="Content" placeholder="Content"></textarea>
+    </div>
+
+    <div class="butn">
+        <button type="submit" class="btn btn-primary mt-4">Save Note</button>
+        <a asp-action="List" class="btn btn-secondary mt-4">Cancel</a>
+    </div>
+
+</form>

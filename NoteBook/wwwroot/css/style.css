@@ -1,0 +1,66 @@
+﻿
+.site-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+/*    flex: 1;*/
+}
+
+.content {
+    flex: 1;
+    padding-bottom: 15vh;
+}
+
+.site-header, .site-footer {
+    display: flex;
+    background: rgb(224,202,89);
+    background: linear-gradient(90deg, rgba(224,202,89,1) 0%, rgba(215,144,12,1) 29%, rgba(255,196,0,1) 100%);
+    width: 100%;
+    height: 15vh;
+    color: black;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.form-group input, .form-group textarea {
+    border: none;
+    width: 100%;
+    display: block;
+    font-size: 1.5rem;
+    font-family: Lato;
+}
+
+.form-group input:focus {
+    outline: 0;
+}
+
+.form-group textarea:focus {
+    outline: 0;
+}
+
+#login-form {
+    width: 100%;
+    margin-bottom: 0.25rem;
+    text-align: left;
+}
+
+h2, h5 {
+    text-align: center;
+    margin-bottom: 1.4rem !important;
+    margin-top: 1.4rem !important;
+    position: relative !important;
+}
+
+.buton-index {
+    text-align: center;
+}
+
+tr, td {
+    width: auto;
+}
